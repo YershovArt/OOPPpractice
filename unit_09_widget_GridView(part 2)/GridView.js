@@ -24,7 +24,7 @@ class GridView {
 	/*
 		Method set header 
 	*/
-	set header(header) {
+	setHeader(header) {
 		if (typeof header === 'string' && header.trim() != '') {
 			this._header = header.trim();
 			return true;
@@ -36,7 +36,7 @@ class GridView {
 	/*
 		Method set headerClass
 	*/
-	set headerClass(headerClass) {
+	setHeaderClass(headerClass) {
 		if (typeof headerClass === 'object') {
 			this._headerClass = headerClass;
 			return true;
@@ -48,7 +48,7 @@ class GridView {
 	/*
 		Method set element
 	*/
-	set element(element) {
+	setElement(element) {
 		if (document.querySelector(element)) {
 			this._element = element;
 			return true;
@@ -57,12 +57,15 @@ class GridView {
 
 	}
 
-
-
 	/*
 	 Method  for show GridViewTable
  */
-	render() {
+	render(data) {
+		this.setElement(data.element);
+		this.setHeaderClass(data.headerClass);
+		this.setHeader(data.header);
+		this.attribute = data.attribute;
+		this.data = data.data
 		// show header 
 		if (this._header) {
 			const header = document.createElement('h1');
@@ -94,23 +97,20 @@ class GridView {
 
 		// draw table 
 
-		for (let i =0;i < this.data.length; i++) {
-			let dataArr = this.data[i];// 1 string of data  точнее один ебьект
-			// console.log( 'this.data', this.data)
-			// console.log('this.data[i]' ,this.data[i])
-			// console.log('dataArr' ,dataArr)
+		for (let i = 0; i < this.data.length; i++) {
+			let dataArr = this.data[i];// 1 obj 
 			let tr = document.createElement('tr');
 			for (let key in this.attribute) {
 				let td = document.createElement('td');
 				let value = dataArr[key];
-				console.log('key=' , key);
-				console.log(`dataArr[${key}]=` , dataArr[key]);
+				console.log('key=', key);
+				console.log(`dataArr[${key}]=`, dataArr[key]);
 				if (this.attribute[key].value) {
 					value = this.attribute[key].value(dataArr)
-				} 
+				}
 				if (this.attribute[key].valueChef) {
 					value = this.attribute[key].valueChef(dataArr)
-				} 
+				}
 				if (this.attribute[key].src) {
 					td.innerHTML = value;
 				}
