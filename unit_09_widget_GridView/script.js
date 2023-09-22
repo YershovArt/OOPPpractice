@@ -38,7 +38,7 @@ gridView.attribute = {
 		'label' : 'Директор',
 		'valueChef' : (data) => {
 			 if (data['chef'] === 'Yoshi Tannamuri') {
-				return data['chef'] + ' kityoza';
+				return data['chef'] + ' Japanese';
 			}
 			return data['chef'];
 		}
