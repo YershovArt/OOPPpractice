@@ -1,0 +1,18 @@
+.header {
+	font-family: Georgia;
+}
+
+table tr, td, th {
+	border: 1px solid #7f7f7f;
+
+}
+
+table td, th {
+	padding: 10px;
+	border-collapse: collapse;
+}
+
+table th {
+	text-transform: uppercase;
+}
+
